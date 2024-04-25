@@ -1,10 +1,10 @@
 {
-  "name": "Hello Extensions",
-  "description": "Base Level Extension",
+  "name": "Local Video Control Keys",
+  "description": "Provides some youtube-like control hotkeys for file://*.mp4 videos",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
-    "default_icon": "hello_extensions.png"
+    "default_icon": "play-button-arrowhead.png"
   },
   "background": {
     "service_worker": "background.js"
@@ -20,8 +20,8 @@
   "commands": {
     "_execute_action": {
       "suggested_key": {
-        "default": "Ctrl+B",
-        "mac": "Command+B"
+        "default": "Ctrl+K",
+        "mac": "Command+K"
       }
     }
   }
