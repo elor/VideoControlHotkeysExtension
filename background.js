@@ -51,6 +51,7 @@ async function toggleTab(tab) {
               'k': () => video.paused ? video.play() : video.pause(),
               'j': () => video.currentTime -= 10 * video.playbackRate,
               'l': () => video.currentTime += 10 * video.playbackRate,
+              'f': () => video.requestFullscreen(),
             }
 
             let action = actions[ev.key];
