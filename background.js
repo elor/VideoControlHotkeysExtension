@@ -15,7 +15,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   }
 });
 
-// chrome.tabs.onCreated.addListener(toggleTab);
+chrome.tabs.onCreated.addListener(toggleTab);
 
 chrome.action.onClicked.addListener(async (tab) => {
   toggleTab(tab);
@@ -61,6 +61,8 @@ async function toggleTab(tab) {
           });
         }
       })
+    } else {
+      // TODO: Remove attached listeners!
     }
   }
 }
