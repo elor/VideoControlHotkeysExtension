@@ -52,6 +52,16 @@ async function toggleTab(tab) {
               'j': () => video.currentTime -= 10 * video.playbackRate,
               'l': () => video.currentTime += 10 * video.playbackRate,
               'f': () => video.requestFullscreen(),
+              '0': () => video.currentTime = 0,
+              '1': () => video.currentTime = 0.1 * video.duration,
+              '2': () => video.currentTime = 0.2 * video.duration,
+              '3': () => video.currentTime = 0.3 * video.duration,
+              '4': () => video.currentTime = 0.4 * video.duration,
+              '5': () => video.currentTime = 0.5 * video.duration,
+              '6': () => video.currentTime = 0.6 * video.duration,
+              '7': () => video.currentTime = 0.7 * video.duration,
+              '8': () => video.currentTime = 0.8 * video.duration,
+              '9': () => video.currentTime = 0.9 * video.duration,
             }
 
             let action = actions[ev.key];
