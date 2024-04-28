@@ -43,6 +43,7 @@ async function toggleTab(tab) {
           console.log("video controls attached");
 
           let video = window.document.querySelector("video");
+          let body = window.document.body;
 
           video.addEventListener('keydown', ev => {
             const actions = {
@@ -62,6 +63,7 @@ async function toggleTab(tab) {
               '7': () => video.currentTime = 0.7 * video.duration,
               '8': () => video.currentTime = 0.8 * video.duration,
               '9': () => video.currentTime = 0.9 * video.duration,
+              'c': () => body.style.cursor = body.style.cursor ? "" : "none",
             }
 
             let action = actions[ev.key];
