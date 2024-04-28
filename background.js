@@ -46,12 +46,18 @@ async function registerTab(tab) {
           let body = document.body;
 
           let toast = document.createElement('div')
-          toast.innerText = "FUCK!"
-          toast.style.position = "fixed";
-          toast.style.width = "100%";
-          toast.style.textAlign = "center";
-          toast.style.color = "white";
-          toast.style.marginTop = "10em";
+          toast.style.position = 'fixed';
+          toast.style.width = '100%';
+          toast.style.textAlign = 'center';
+          toast.style.color = '#202030';
+          toast.style.marginTop = '10em';
+          toast.style.paddingTop = '0.1em';
+          toast.style.paddingBottom = '0.1em';
+          toast.style.fontFamily = 'sans-serif';
+          toast.style.fontWeight = 'bold';
+
+          toast.style.borderRadius = '1em';
+          toast.style.backgroundColor = '#ffffff40'
 
           let toastTimeout = undefined;
 
