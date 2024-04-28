@@ -11,17 +11,17 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   console.log(changeInfo);
 
   if (changeInfo.url) {
-    toggleTab(tab);
+    registerTab(tab);
   }
 });
 
-chrome.tabs.onCreated.addListener(toggleTab);
+chrome.tabs.onCreated.addListener(registerTab);
 
 chrome.action.onClicked.addListener(async (tab) => {
-  toggleTab(tab);
+  registerTab(tab);
 });
 
-async function toggleTab(tab) {
+async function registerTab(tab) {
   if (tab.url.startsWith("file://") && tab.url.endsWith(".mp4")) {
     // Retrieve the action badge to check if the extension is ON or OFF
     const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
@@ -42,28 +42,50 @@ async function toggleTab(tab) {
         func: () => {
           console.log("video controls attached");
 
-          let video = window.document.querySelector("video");
-          let body = window.document.body;
+          let video = document.querySelector("video");
+          let body = document.body;
+
+          let toast = document.createElement('div')
+          toast.innerText = "FUCK!"
+          toast.style.position = "fixed";
+          toast.style.width = "100%";
+          toast.style.textAlign = "center";
+          toast.style.color = "white";
+          toast.style.marginTop = "10em";
+
+          let toastTimeout = undefined;
+
+          function setToast(text, duration_ms) {
+            if (toastTimeout) {
+              window.clearTimeout(toastTimeout);
+            }
+
+            toast.innerText = text;
+            body.append(toast);
+            toastTimeout = window.setTimeout(() => body.removeChild(toast), duration_ms || 1000);
+          }
+
+          setToast("registered", 2000);
 
           video.addEventListener('keydown', ev => {
             const actions = {
-              '<': () => video.playbackRate -= 0.25,
-              '>': () => video.playbackRate += 0.25,
-              'k': () => video.paused ? video.play() : video.pause(),
-              'j': () => video.currentTime -= 10 * video.playbackRate,
-              'l': () => video.currentTime += 10 * video.playbackRate,
-              'f': () => video.requestFullscreen(),
-              '0': () => video.currentTime = 0,
-              '1': () => video.currentTime = 0.1 * video.duration,
-              '2': () => video.currentTime = 0.2 * video.duration,
-              '3': () => video.currentTime = 0.3 * video.duration,
-              '4': () => video.currentTime = 0.4 * video.duration,
-              '5': () => video.currentTime = 0.5 * video.duration,
-              '6': () => video.currentTime = 0.6 * video.duration,
-              '7': () => video.currentTime = 0.7 * video.duration,
-              '8': () => video.currentTime = 0.8 * video.duration,
-              '9': () => video.currentTime = 0.9 * video.duration,
-              'c': () => body.style.cursor = body.style.cursor ? "" : "none",
+              '<': () => { video.playbackRate -= 0.25; setToast(`Rate: ${video.playbackRate}`) },
+              '>': () => { video.playbackRate += 0.25; setToast(`Rate: ${video.playbackRate}`) },
+              'k': () => { video.paused ? video.play() : video.pause(); setToast('Play/Paused') },
+              'j': () => { video.currentTime -= 10 * video.playbackRate; setToast('+10s') },
+              'l': () => { video.currentTime += 10 * video.playbackRate; setToast('-10s') },
+              'f': () => { video.requestFullscreen(); setToast('fullscreen') },
+              '0': () => { video.currentTime = 0; setToast('0%') },
+              '1': () => { video.currentTime = 0.1 * video.duration; setToast('10%') },
+              '2': () => { video.currentTime = 0.2 * video.duration; setToast('20%') },
+              '3': () => { video.currentTime = 0.3 * video.duration; setToast('30%') },
+              '4': () => { video.currentTime = 0.4 * video.duration; setToast('40%') },
+              '5': () => { video.currentTime = 0.5 * video.duration; setToast('50%') },
+              '6': () => { video.currentTime = 0.6 * video.duration; setToast('60%') },
+              '7': () => { video.currentTime = 0.7 * video.duration; setToast('70%') },
+              '8': () => { video.currentTime = 0.8 * video.duration; setToast('80%') },
+              '9': () => { video.currentTime = 0.9 * video.duration; setToast('90%') },
+              'c': () => { body.style.cursor = body.style.cursor ? "" : "none"; setToast('cursor') },
             }
 
             let action = actions[ev.key];
