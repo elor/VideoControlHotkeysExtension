@@ -73,6 +73,16 @@ async function registerTab(tab) {
 
           setToast("registered", 2000);
 
+          function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen();
+            } else {
+              if (document.exitFullscreen) {
+                document.exitFullscreen();
+              }
+            }
+          }
+
           video.addEventListener('keydown', ev => {
             const actions = {
               '<': () => { video.playbackRate -= 0.25; setToast(`Rate: ${video.playbackRate}`) },
@@ -80,8 +90,7 @@ async function registerTab(tab) {
               'k': () => { video.paused ? video.play() : video.pause(); setToast(video.paused ? 'Pause' : 'Play') },
               'j': () => { video.currentTime -= 10 * video.playbackRate; setToast('-10s') },
               'l': () => { video.currentTime += 10 * video.playbackRate; setToast('+10s') },
-              'f': () => { video.requestFullscreen(); setToast('fullscreen') },
-              '0': () => { video.currentTime = 0; setToast('0%') },
+              'f': () => { toggleFullscreen(); setToast('Fullscreen') },
               '0': () => { video.currentTime = 0; setToast(' 0%') },
               '1': () => { video.currentTime = 0.1 * video.duration; setToast('10%') },
               '2': () => { video.currentTime = 0.2 * video.duration; setToast('20%') },
