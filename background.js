@@ -82,6 +82,7 @@ async function registerTab(tab) {
               'l': () => { video.currentTime += 10 * video.playbackRate; setToast('+10s') },
               'f': () => { video.requestFullscreen(); setToast('fullscreen') },
               '0': () => { video.currentTime = 0; setToast('0%') },
+              '0': () => { video.currentTime = 0; setToast(' 0%') },
               '1': () => { video.currentTime = 0.1 * video.duration; setToast('10%') },
               '2': () => { video.currentTime = 0.2 * video.duration; setToast('20%') },
               '3': () => { video.currentTime = 0.3 * video.duration; setToast('30%') },
@@ -91,7 +92,7 @@ async function registerTab(tab) {
               '7': () => { video.currentTime = 0.7 * video.duration; setToast('70%') },
               '8': () => { video.currentTime = 0.8 * video.duration; setToast('80%') },
               '9': () => { video.currentTime = 0.9 * video.duration; setToast('90%') },
-              'c': () => { body.style.cursor = body.style.cursor ? "" : "none"; setToast('cursor') },
+              'c': () => { body.style.cursor = body.style.cursor ? "" : "none"; setToast('Cursor') },
             }
 
             let action = actions[ev.key];
