@@ -77,7 +77,7 @@ async function registerTab(tab) {
             const actions = {
               '<': () => { video.playbackRate -= 0.25; setToast(`Rate: ${video.playbackRate}`) },
               '>': () => { video.playbackRate += 0.25; setToast(`Rate: ${video.playbackRate}`) },
-              'k': () => { video.paused ? video.play() : video.pause(); setToast('Play/Paused') },
+              'k': () => { video.paused ? video.play() : video.pause(); setToast(video.paused ? 'Pause' : 'Play') },
               'j': () => { video.currentTime -= 10 * video.playbackRate; setToast('-10s') },
               'l': () => { video.currentTime += 10 * video.playbackRate; setToast('+10s') },
               'f': () => { video.requestFullscreen(); setToast('fullscreen') },
