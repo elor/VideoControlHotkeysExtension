@@ -75,7 +75,8 @@ async function registerTab(tab) {
 
           function toggleFullscreen() {
             if (!document.fullscreenElement) {
-              document.documentElement.requestFullscreen();
+              // document.documentElement.requestFullscreen();
+              video.requestFullscreen()
             } else {
               if (document.exitFullscreen) {
                 document.exitFullscreen();
