@@ -22,7 +22,7 @@ chrome.action.onClicked.addListener(async (tab) => {
 });
 
 async function registerTab(tab) {
-  if (tab.url.startsWith("file://") && tab.url.endsWith(".mp4")) {
+  if (tab.url.startsWith('file://') && (tab.url.endsWith('.mp4') || tab.url.endsWith('.webm'))) {
     // Retrieve the action badge to check if the extension is ON or OFF
     const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
 
